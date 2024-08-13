@@ -293,8 +293,8 @@ const App = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6 text-center">Growing in Prayer</h1>
+    <div className="max-w-md mx-auto p-4 bg-background">
+      <h1 className="text-3xl font-bold mb-6 text-center text-primary">Growing in Prayer</h1>
       <AudioPlayer
         isPlaying={isPlaying}
         onPlayPause={handlePlayPause}
@@ -304,8 +304,8 @@ const App = () => {
         onRepeat={handleRepeat}
         isRepeating={isRepeating}
       />
-      <Alert className="my-6">
-        <AlertTitle>Welcome!</AlertTitle>
+      <Alert className="my-6 bg-secondary text-secondary-foreground">
+        <AlertTitle className="font-semibold">Welcome!</AlertTitle>
         <AlertDescription>
           Enter a Bible topic to explore relevant verses. Click on a reference to play that specific verse, or use the expand icon to read the passage.
         </AlertDescription>
@@ -317,7 +317,7 @@ const App = () => {
         </Alert>
       )}
       {isLoading ? (
-        <p className="text-center">Loading Bible references...</p>
+        <p className="text-center text-muted-foreground">Loading Bible references...</p>
       ) : (
         bibleReferences.map((item, index) => (
           <BibleReferenceCard
@@ -344,12 +344,10 @@ const BibleReferenceCard = React.forwardRef(({ reference, duration, isActive, pa
     setIsExpanded(!isExpanded);
   };
 
-  console.log('Rendering BibleReferenceCard:', { reference, arabicPassage, isLoading, error });
-
   const renderArabicPassage = (text) => {
     return text.split(/\[(\d+)\]/).map((part, index) => {
       if (index % 2 === 1) {
-        return <sup key={index} className="text-xs text-gray-500 mr-1">{part}</sup>;
+        return <sup key={index} className="text-xs text-muted-foreground mr-1">{part}</sup>;
       }
       return <span key={index}>{part}</span>;
     });
@@ -357,23 +355,23 @@ const BibleReferenceCard = React.forwardRef(({ reference, duration, isActive, pa
 
   return (
     <Card 
-      className={`mb-4 ${isActive ? 'ring-2 ring-green-400 ring-opacity-50' : ''}`}
+      className={`mb-4 ${isActive ? 'ring-2 ring-primary ring-opacity-50' : ''} transition-all duration-300 ease-in-out hover:shadow-md`}
       ref={ref}
       onClick={onClick}
     >
-      <CardContent>
+      <CardContent className="p-4">
         <div className="flex justify-between items-center mb-2">
-          <h3 className="text-sm font-medium">{reference}</h3>
+          <h3 className="text-sm font-medium text-primary">{reference}</h3>
           <div className="flex items-center space-x-2">
             <span className="text-xs text-muted-foreground">{duration}</span>
             <button 
               onClick={handleExpand}
-              className="p-1 hover:bg-gray-100 rounded-full"
+              className="p-1 hover:bg-secondary rounded-full transition-colors duration-200"
             >
               {isExpanded ? (
-                <ChevronUp className="h-4 w-4" />
+                <ChevronUp className="h-4 w-4 text-primary" />
               ) : (
-                <ChevronDown className="h-4 w-4" />
+                <ChevronDown className="h-4 w-4 text-primary" />
               )}
             </button>
           </div>
@@ -381,18 +379,18 @@ const BibleReferenceCard = React.forwardRef(({ reference, duration, isActive, pa
         {(isActive || isExpanded) && (
           <div className="mt-4 space-y-4">
             {isLoading ? (
-              <p>Loading...</p>
+              <p className="text-muted-foreground">Loading...</p>
             ) : error ? (
-              <p className="text-red-500">{error}</p>
+              <p className="text-destructive">{error}</p>
             ) : (
               <>
                 <div className="text-sm">
-                  <h3 className="font-semibold mb-2">Read Along</h3>
-                  <p className="whitespace-pre-wrap">{passage}</p>
+                  <h3 className="font-semibold mb-2 text-primary">Read Along</h3>
+                  <p className="whitespace-pre-wrap text-foreground">{passage}</p>
                 </div>
                 <div className="text-sm">
-                  <h3 className="font-semibold mb-2">Van Dyke Arabic</h3>
-                  <p className="whitespace-pre-wrap leading-relaxed" dir="rtl" lang="ar">
+                  <h3 className="font-semibold mb-2 text-primary">Van Dyke Arabic</h3>
+                  <p className="whitespace-pre-wrap leading-relaxed text-foreground" dir="rtl" lang="ar">
                     {arabicPassage ? renderArabicPassage(arabicPassage) : 'Arabic translation not available'}
                   </p>
                 </div>
