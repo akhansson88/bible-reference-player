@@ -1,12 +1,30 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Card, CardContent } from "./components/ui/card"
-import { Alert, AlertDescription, AlertTitle } from "./components/ui/alert"
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import AudioPlayer from './components/AudioPlayer';
 
 const ESV_API_TOKEN = 'fe762f3700c9280c59edc63e85687aad7454e436';
 const GROQ_API_KEY = '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';
+
+const Card = ({ className, children, ...props }) => (
+  <div className={`bg-white shadow rounded-lg ${className}`} {...props}>{children}</div>
+);
+
+const CardContent = ({ className, children, ...props }) => (
+  <div className={`p-4 ${className}`} {...props}>{children}</div>
+);
+
+const Alert = ({ className, children, ...props }) => (
+  <div className={`p-4 bg-blue-100 text-blue-700 rounded-lg ${className}`} {...props}>{children}</div>
+);
+
+const AlertTitle = ({ className, children, ...props }) => (
+  <h4 className={`font-bold mb-2 ${className}`} {...props}>{children}</h4>
+);
+
+const AlertDescription = ({ className, children, ...props }) => (
+  <p className={`${className}`} {...props}>{children}</p>
+);
 
 const getBiblePassage = async (reference) => {
   try {
@@ -198,7 +216,7 @@ const App = () => {
       }
     };
     newAudio.play().catch(error => {
-      console.error('Error playing audio: ', error);
+      console.error('Error playing audio:', error);
       setError('Failed to play audio. Please try again.');
     });
     setAudio(newAudio);
@@ -311,7 +329,7 @@ const App = () => {
         </AlertDescription>
       </Alert>
       {error && (
-        <Alert className="my-6" variant="destructive">
+        <Alert className="my-6 bg-red-100 text-red-700">
           <AlertTitle>Error</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
         </Alert>
