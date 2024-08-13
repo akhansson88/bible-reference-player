@@ -2,6 +2,7 @@
   "name": "bible-reference-player",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://akhansson88.github.io/bible-reference-player/",
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
