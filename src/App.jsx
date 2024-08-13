@@ -351,4 +351,37 @@ const BibleReferenceCard = React.forwardRef(({ reference, duration, isActive, pa
       <div className="p-4">
         <div className="flex justify-between items-center mb-2">
           <h3 className="text-sm font-medium text-primary">{reference}</h3>
-          <div className
+          <div className="flex items-center space-x-2">
+            <span className="text-xs text-muted-foreground">{duration}</span>
+            <button 
+              onClick={handleExpand}
+              className="p-1 hover:bg-secondary rounded-full transition-colors duration-200"
+            >
+              {isExpanded ? (
+                <ChevronUp className="h-4 w-4 text-primary" />
+              ) : (
+                <ChevronDown className="h-4 w-4 text-primary" />
+              )}
+            </button>
+          </div>
+        </div>
+        {(isActive || isExpanded) && (
+          <div className="mt-4 space-y-4">
+            <div className="text-sm">
+              <h3 className="font-semibold mb-2 text-primary">Read Along</h3>
+              <p className="whitespace-pre-wrap text-foreground">{passage}</p>
+            </div>
+            <div className="text-sm">
+              <h3 className="font-semibold mb-2 text-primary">Van Dyke Arabic</h3>
+              <p className="whitespace-pre-wrap leading-relaxed text-foreground" dir="rtl" lang="ar">
+                {arabicPassage ? renderArabicPassage(arabicPassage) : 'Arabic translation not available'}
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+});
+
+export default App;
