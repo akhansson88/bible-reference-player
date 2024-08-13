@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/bible-reference-player/static/css/main.d0057a61.css",
-    "main.js": "/bible-reference-player/static/js/main.dde7662a.js",
+    "main.js": "/bible-reference-player/static/js/main.dd9b5ef8.js",
     "static/js/453.38efd664.chunk.js": "/bible-reference-player/static/js/453.38efd664.chunk.js",
     "index.html": "/bible-reference-player/index.html",
     "main.d0057a61.css.map": "/bible-reference-player/static/css/main.d0057a61.css.map",
-    "main.dde7662a.js.map": "/bible-reference-player/static/js/main.dde7662a.js.map",
+    "main.dd9b5ef8.js.map": "/bible-reference-player/static/js/main.dd9b5ef8.js.map",
     "453.38efd664.chunk.js.map": "/bible-reference-player/static/js/453.38efd664.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d0057a61.css",
-    "static/js/main.dde7662a.js"
+    "static/js/main.dd9b5ef8.js"
   ]
 }
