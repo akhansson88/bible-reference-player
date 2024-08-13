@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button } from "@/components/ui/button"
+import { Button } from "../ui/button"
 import { Play, Pause, SkipBack, SkipForward, Search, Repeat } from 'lucide-react';
-import { Input } from "@/components/ui/input"
+import { Input } from "../ui/input"
 
 const AudioPlayer = ({ isPlaying, onPlayPause, onPrevious, onNext, onSearch, onRepeat, isRepeating }) => {
   const [topic, setTopic] = React.useState('');
