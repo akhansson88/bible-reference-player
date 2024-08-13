@@ -23,7 +23,7 @@ const AlertTitle = ({ className, children, ...props }) => (
 );
 
 const AlertDescription = ({ className, children, ...props }) => (
-  <p className={`${className}`} {...props}>{children}</p>
+  <p className={className} {...props}>{children}</p>
 );
 
 const getBiblePassage = async (reference) => {
@@ -106,13 +106,9 @@ const bookNameToId = {
 };
 
 async function fetchArabicBibleVerses(reference) {
-  // Trim the reference and remove any trailing periods
   reference = reference.trim().replace(/\.$/, '');
-
-  // Parse the reference
   let book, chapterAndVerse;
   if (/^[123]/.test(reference)) {
-    // Handle books starting with 1, 2, or 3
     const parts = reference.split(' ');
     book = parts.slice(0, 2).join(' ');
     chapterAndVerse = parts.slice(2).join(' ');
@@ -123,20 +119,17 @@ async function fetchArabicBibleVerses(reference) {
   const [chapterVerse, endVerse] = chapterAndVerse.split('-');
   let [chapter, verse] = chapterVerse.split('.');
 
-  // Convert book name to ID
   const bookId = bookNameToId[book];
   if (!bookId) {
     throw new Error(`Unknown book: ${book}`);
   }
 
-  // Fetch the entire book
   const response = await axios.get(
     `https://raw.githubusercontent.com/maatheusgois/bible/main/versions/ar/svd/${bookId}/${bookId}.json`
   );
   
   const bookData = response.data;
   
-  // Extract the requested verses
   const chapterIndex = parseInt(chapter) - 1;
   const verseStart = parseInt(verse) - 1;
   const verseEnd = endVerse ? parseInt(endVerse) - 1 : verseStart;
@@ -147,11 +140,9 @@ async function fetchArabicBibleVerses(reference) {
   
   const verses = bookData.chapters[chapterIndex].slice(verseStart, verseEnd + 1);
   
-  // Combine verses into a single string with verse numbers
   return verses.map((verseText, index) => `[${verseStart + index + 1}] ${verseText}`).join(' ');
 }
 
-// Update the getArabicTranslation function to use the new fetchArabicBibleVerses function
 const getArabicTranslation = async (reference) => {
   try {
     const arabicVerses = await fetchArabicBibleVerses(reference);
