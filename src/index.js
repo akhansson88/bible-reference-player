@@ -25,6 +25,17 @@ const disableZoom = () => {
 // Call the function to disable zoom
 disableZoom();
 
+// Add viewport meta tag to prevent zooming
+const addViewportMeta = () => {
+  const meta = document.createElement('meta');
+  meta.name = 'viewport';
+  meta.content = 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no';
+  document.getElementsByTagName('head')[0].appendChild(meta);
+};
+
+// Call the function to add viewport meta tag
+addViewportMeta();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
