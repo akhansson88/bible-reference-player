@@ -198,7 +198,7 @@ const App = () => {
       }
     };
     newAudio.play().catch(error => {
-      console.error('Error playing audio:', error);
+      console.error('Error playing audio: ', error);
       setError('Failed to play audio. Please try again.');
     });
     setAudio(newAudio);
