@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Card, CardContent } from "@/components/ui/card"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Card, CardContent } from "./components/ui/card"
+import { Alert, AlertDescription, AlertTitle } from "./components/ui/alert"
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import AudioPlayer from './components/AudioPlayer';
 
